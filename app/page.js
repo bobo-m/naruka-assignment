@@ -1,101 +1,117 @@
-import Image from "next/image";
+"use client"
+import React, { useState } from "react";
+import CompanyInfoForm from "@/components/CompanyInfoForm.js"
+import FoundingInfoForm from "@/components/FoundingInfoForm";
+import SocialsForm from "@/components/SocialsForm";
+import ContactForm from "@/components/ContactForm";
+import { AtSign, CheckCheck, CircleUserRound, Globe, MoveRight, UserRound } from "lucide-react";
+import Header from "@/components/Header";
 
-export default function Home() {
+const MultiStepForm = () => {
+  const [activeStep, setActiveStep] = useState(3);
+
+  const steps = [
+    {
+      id: 1,
+      tag: "companyInfo",
+      label: "Company Info",
+      image: (isActive) => <UserRound className="w-5" color={`${isActive ? "#0B6BBF" : "black"}`} />
+    },
+    {
+      id: 2,
+      tag: "foundingInfo",
+      label: "Founding Info",
+      image: (isActive) => <CircleUserRound className="w-5" color={`${isActive ? "#0B6BBF" : "black"}`} />
+    },
+    {
+      id: 3,
+      tag: "socialInfo",
+      label: "Social Media Info",
+      image: (isActive) => <Globe className="w-5" color={`${isActive ? "#0B6BBF" : "black"}`} />
+    },
+    {
+      id: 4,
+      tag: "contact",
+      label: "Contact",
+      image: (isActive) => <AtSign className="w-5" color={`${isActive ? "#0B6BBF" : "black"}`} />
+    },
+  ]
+
+  if (activeStep === 5) {
+    return (
+      <>
+        <Header activeStep={activeStep} />
+        <main className='w-4/5 mt-10 flex justify-center grow'>
+          <div className="flex flex-col items-center w-1/2 gap-5 h-full justify-center -translate-y-20">
+            <span className="bg-[#E6EFF9] w-24 h-24 rounded-full flex items-center justify-center">
+              <CheckCheck color="#0B6BBF" size={36} />
+            </span>
+            <h2 className="font-medium text-xl">🎉 Congratulations, Your profile is 100% complete!</h2>
+            <p className="text-sm text-slate-400 text-center">
+              Donec hendrerit, ante mattis pellentesque eleifend, tortor urna
+              malesuada ante, eget aliquam nulla augue hendrerit ligula. Nunc
+              mauris arcu, mattis sed sem vitae.
+            </p>
+            <span className="flex items-center text-sm space-x-2 h-12">
+              <button className="text-blue-500 px-5 rounded-sm bg-[#E6EFF9] h-full">View Dashboard</button>
+              <button className="bg-blue-500 px-5 rounded-sm text-white flex items-center gap-2 h-full">
+                Post Job {<MoveRight className="w-4" />}
+              </button>
+            </span>
+          </div>
+        </main>
+      </>
+    )
+  }
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      <Header activeStep={activeStep} />
+      <main className='w-4/5 mt-10'>
+        <nav className='w-full flex justify-center gap-2'>
+          {steps.map((step) => (
+            <button
+              key={step.id}
+              disabled={step.id > activeStep}
+              className="w-1/6 flex justify-center items-center disabled:opacity-50 relative"
+              onClick={() => setActiveStep(step.id)}
+            >
+              <span className={`flex items-center after:absolute after:content-[''] after:left-0 after:bottom-[-10px]
+              after:h-1 after:w-full after:rounded-sm ${activeStep === step.id ? "after:bg-blue-500" : "after:bg-transparent"}`}
+              >
+                {step.image(activeStep == step.id)}
+                <h5 className={`ml-2 text-sm ${activeStep === step.id ? "text-blue-500" : ""}`}>{step.label}</h5>
+              </span>
+            </button>
+          ))}
+        </nav>
+        <hr className="h-[1px] mt-2 mb-5" />
+        <div className="w-full">
+          {activeStep === 1 && <CompanyInfoForm />}
+          {activeStep === 2 && <FoundingInfoForm />}
+          {activeStep === 3 && <SocialsForm />}
+          {activeStep === 4 && <ContactForm />}
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        </div>
+        <div className="mt-8 mb-12 space-x-3 flex">
+          {
+            activeStep > 1 &&
+            <button
+              onClick={() => setActiveStep((prev) => (prev - 1))}
+              className="px-5 py-3 rounded-sm bg-gray-200"
+            >
+              Previous
+            </button>
+          }
+          <button
+            onClick={() => setActiveStep((prev) => (prev + 1))}
+            className="bg-blue-500 px-5 py-3 rounded-sm text-white flex items-center">
+            {activeStep === 4 ? "Finish Editing" : 'Save and Next'} <MoveRight className="w-5 ml-2" />
+          </button>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    </>
+  )
 }
+
+export default MultiStepForm
