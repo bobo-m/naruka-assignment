@@ -11,7 +11,7 @@ const FoundingInfoForm = () => {
   const [website, setWebsite] = useState('')
   const [websiteError, setWebsiteError] = useState(null)
   return (
-    <form className="w-full grid grid-cols-3 text-sm box-border gap-x-4 gap-y-5">
+    <form className="w-full grid md:grid-cols-3 text-sm box-border gap-x-4 gap-y-5">
       <span className="flex flex-col">
         <label htmlFor="organizationType">Organization Type</label>
         <select
@@ -79,7 +79,7 @@ const FoundingInfoForm = () => {
         />
       </span>
       <span className="flex flex-col">
-        <label htmlFor="companyWebsite">Team Size</label>
+        <label htmlFor="companyWebsite">Company Website</label>
         <span className="flex border border-gray-300 h-10 mt-2 rounded-sm items-center pl-2 focus-within:outline outline-2 outline-black ">
           <Link2 />
           <input

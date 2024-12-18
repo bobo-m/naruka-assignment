@@ -8,7 +8,7 @@ import { AtSign, CheckCheck, CircleUserRound, Globe, MoveRight, UserRound } from
 import Header from "@/components/Header";
 
 const MultiStepForm = () => {
-  const [activeStep, setActiveStep] = useState(3);
+  const [activeStep, setActiveStep] = useState(1);
 
   const steps = [
     {
@@ -41,8 +41,8 @@ const MultiStepForm = () => {
     return (
       <>
         <Header activeStep={activeStep} />
-        <main className='w-4/5 mt-10 flex justify-center grow'>
-          <div className="flex flex-col items-center w-1/2 gap-5 h-full justify-center -translate-y-20">
+        <main className='md:w-4/5 mt-10 flex justify-center grow'>
+          <div className="flex flex-col items-center md:w-1/2 gap-5 h-full justify-center -translate-y-20">
             <span className="bg-[#E6EFF9] w-24 h-24 rounded-full flex items-center justify-center">
               <CheckCheck color="#0B6BBF" size={36} />
             </span>
@@ -67,13 +67,13 @@ const MultiStepForm = () => {
   return (
     <>
       <Header activeStep={activeStep} />
-      <main className='w-4/5 mt-10'>
-        <nav className='w-full flex justify-center gap-2'>
+      <main className='w-full md:w-4/5 mt-10'>
+        <nav className='w-full flex justify-center gap-1 md:gap-2'>
           {steps.map((step) => (
             <button
               key={step.id}
               disabled={step.id > activeStep}
-              className="w-1/6 flex justify-center items-center disabled:opacity-50 relative"
+              className="md:w-1/6 flex justify-center items-center disabled:opacity-50 relative"
               onClick={() => setActiveStep(step.id)}
             >
               <span className={`flex items-center after:absolute after:content-[''] after:left-0 after:bottom-[-10px]

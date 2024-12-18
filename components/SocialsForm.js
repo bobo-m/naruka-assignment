@@ -42,14 +42,17 @@ const SocialsForm = () => {
 
         <fieldset key={socialLink.id} className="flex flex-col">
           <legend>Social Link {socialLink.id}</legend>
-          <div className="w-full flex items-center h-10 gap-2 mt-2 mb-3">
-            <span className="flex items-center h-full grow border border-gray-300 rounded-sm">
-              <Dropdown
-                data={platforms}
-                placeholder={"Select..."}
-                defaultValue={socialLink.identifier}
-                handleSelect={(identifier) => handlePlatformChange(socialLink.id, identifier)} />
-              <hr className="mx-2 w-[1px] h-4/5 bg-gray-300" />
+          <div className="w-full h-20 md:h-10 flex items-center gap-2 mt-2 mb-3">
+            <span className="flex md:flex-row flex-col items-center h-full grow border border-gray-300 rounded-sm">
+              <span className="w-full md:w-1/4">
+                <Dropdown
+                  data={platforms}
+                  placeholder={"Select..."}
+                  defaultValue={socialLink.identifier}
+                  handleSelect={(identifier) => handlePlatformChange(socialLink.id, identifier)} />
+              </span>
+
+              <hr className="md:mx-2 md:w-[1px] md:h-4/5 md:bg-gray-300" />
               <span className="h-full grow">
                 <input
                   type="url"

@@ -11,7 +11,7 @@ const ContactForm = () => {
   const [email, setEmail] = useState('')
   const [emailError, setEmailError] = useState(null)
   return (
-    <form>
+    <form className="w-full">
       <label htmlFor="mapLocation">
         Map Location
         <input type="text" className="w-full border border-gray-300 h-10 rounded-sm mb-4 mt-2" />
@@ -19,7 +19,9 @@ const ContactForm = () => {
       <label htmlFor="phone">
         Phone
         <div className="h-10 w-full flex items-center border border-gray-300 rounded-sm mt-2">
-          <Dropdown placeholder="Select..." data={countries} defaultValue={dialCode} handleSelect={setDialCode} />
+          <span className="w-1/3 md-1/4">
+            <Dropdown placeholder="Select..." data={countries} defaultValue={dialCode} handleSelect={setDialCode} />
+          </span>
           <hr className="w-[1px] h-4/5 bg-gray-300" />
           <input
             type="text"

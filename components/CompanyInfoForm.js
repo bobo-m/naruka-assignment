@@ -9,8 +9,8 @@ const CompanyInfoForm = () => {
   return (
     <form className='w-full'>
       <h3 className='font-md text-md'>Logo & Banner Image</h3>
-      <div className='w-full flex gap-2 h-64 box-border'>
-        <span className='w-1/4'>
+      <div className='w-full flex flex-col md:flex-row gap-2 h-64 box-border'>
+        <span className='w-full md:w-1/4'>
           <Dropzone maxSizeMB={5} dimensions={400} label="Upload Document" />
         </span>
         <span className='grow max-w-3/4 max-h-full'>

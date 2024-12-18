@@ -7,7 +7,7 @@ const Dropdown = ({ placeholder, data, defaultValue, handleSelect }) => {
   const [selectedOption, setSelectedOption] = useState(defaultValue ? data.find((item) => defaultValue === item.identifier) : null)
 
   return (
-    <div className={`w-56 h-10 border border-gray-300 relative rounded-sm ${isOpen ? 'z-20' : 'z-10'} dropdown`}>
+    <div className={`w-full h-10 border border-r-0 rounded-e-none border-gray-300 relative rounded-sm ${isOpen ? 'z-20' : 'z-10'} dropdown`}>
       <span
         className='w-full h-full flex items-center gap-4 justify-center cursor-pointer'
         onClick={() => setIsOpen((prev) => !prev)}
